@@ -5,6 +5,9 @@
     "license": "MIT",
     "private": true,
     "scripts": {},
-    "dependencies": {},
+    "dependencies": {
+        "@changesets/cli": "^2.14.1",
+        "typescript": "^4.2.2"
+    },
     "devDependencies": {}
 }
