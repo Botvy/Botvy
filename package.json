@@ -1,0 +1,10 @@
+{
+    "name": "@botvy/root",
+    "version": "0.0.0",
+    "author": "Yannick Fricke <yannickfricke@googlemail.com>",
+    "license": "MIT",
+    "private": true,
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {}
+}
