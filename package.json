@@ -9,8 +9,9 @@
         "./packages/libs/*"
     ],
     "scripts": {
-        "packagaya": "packagaya",
-        "packagaya:fix": "nodemon -w \"./\" -i \"./node_modules\" -i \"./**/node_modules/\" -i \"./**/dist/\" -x \"clear && yarn run packagaya sync execute\""
+        "packagaya": "packagaya sync info",
+        "packagaya:fix": "packagaya sync execute",
+        "packagaya:fix:watch": "nodemon -w \"./\" -i \"./node_modules\" -i \"./**/node_modules/\" -i \"./**/dist/\" -x \"clear && yarn run packagaya:fix\""
     },
     "dependencies": {},
     "devDependencies": {
