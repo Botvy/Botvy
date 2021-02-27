@@ -11,6 +11,10 @@
         {
             "name": "UI",
             "path": "./packages/apps/ui"
+        },
+        {
+            "name": "Plugin System",
+            "path": "./packages/libs/plugin-system"
         }
     ]
 }

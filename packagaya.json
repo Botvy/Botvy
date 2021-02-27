@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/Packagaya/Packagaya/master/packages/libs/config/src/ConfigSchema.json",
     "apps": ["./packages/apps"],
-    "libs": [],
+    "libs": ["./packages/libs"],
     "adapters": ["@packagaya/ts-adapter"],
     "features": [
         [
