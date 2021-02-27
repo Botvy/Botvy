@@ -7,6 +7,10 @@
         {
             "name": "Client",
             "path": "./packages/apps/client"
+        },
+        {
+            "name": "UI",
+            "path": "./packages/apps/ui"
         }
     ]
 }
