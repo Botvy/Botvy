@@ -8,16 +8,7 @@
             "sync-ts-deps",
             {
                 "installAlwaysLatestVersion": false,
-                "blacklist": [
-                    "jest",
-                    "ts-jest",
-                    "rimraf",
-                    "@types/inquirer",
-                    "@types/diff",
-                    "@types/glob",
-                    "babylon",
-                    "inquirer-autocomplete-prompt"
-                ]
+                "blacklist": ["jest", "ts-jest", "rimraf", "babylon"]
             }
         ],
         "sync-ts-paths"
