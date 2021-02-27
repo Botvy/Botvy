@@ -17,7 +17,8 @@ jobs:
             - name: Install the dependencies
               run: yarn install
               shell: bash
-            - run: yarn run packagaya sync info
+            - name: Run Packagaya and check for differences
+              run: yarn run packagaya sync info
               shell: bash
               env:
                   LOG_LEVEL: debug
