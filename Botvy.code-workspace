@@ -3,6 +3,10 @@
         {
             "name": "Root",
             "path": "./"
+        },
+        {
+            "name": "Client",
+            "path": "./packages/apps/client"
         }
     ]
 }
