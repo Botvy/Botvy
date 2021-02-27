@@ -16,5 +16,12 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
-    "references": []
+    "references": [
+        {
+            "path": "./packages/apps/client/tsconfig.json"
+        },
+        {
+            "path": "./packages/apps/ui/tsconfig.json"
+        }
+    ]
 }
