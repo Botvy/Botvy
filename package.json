@@ -9,6 +9,8 @@
         "./packages/libs/*"
     ],
     "scripts": {
+        "build": "tsc --build",
+        "build:watch": "tsc --build -w",
         "packagaya": "packagaya sync info",
         "packagaya:fix": "packagaya sync execute",
         "packagaya:fix:watch": "nodemon -w \"./\" -i \"./node_modules\" -i \"./**/node_modules/\" -i \"./**/dist/\" -x \"clear && yarn run packagaya:fix\""
