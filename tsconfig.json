@@ -22,6 +22,9 @@
         },
         {
             "path": "./packages/apps/ui/tsconfig.json"
+        },
+        {
+            "path": "./packages/libs/plugin-system/tsconfig.json"
         }
     ]
 }
