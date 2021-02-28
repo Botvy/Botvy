@@ -1,9 +1,17 @@
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
+        "jsx": "react",
         "outDir": "./dist",
         "rootDir": "./src",
-        "paths": {}
+        "baseUrl": ".",
+        "paths": {
+            "@botvy/plugin-system/*": ["../../libs/plugin-system/*"]
+        }
     },
-    "references": []
+    "references": [
+        {
+            "path": "../../libs/plugin-system/tsconfig.json"
+        }
+    ]
 }
