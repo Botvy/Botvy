@@ -25,6 +25,9 @@
         },
         {
             "path": "./packages/libs/plugin-system/tsconfig.json"
+        },
+        {
+            "path": "./packages/libs/dependency-injection/tsconfig.json"
         }
     ]
 }
