@@ -3,7 +3,11 @@
     "compilerOptions": {
         "outDir": "./dist",
         "rootDir": "./src",
-        "paths": {}
+        "baseUrl": "./",
+        "paths": {},
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
-    "references": []
+    "references": [],
+    "exclude": ["./dist"]
 }
