@@ -8,7 +8,13 @@
             "sync-ts-deps",
             {
                 "installAlwaysLatestVersion": false,
-                "blacklist": ["jest", "ts-jest", "rimraf"]
+                "blacklist": [
+                    "jest",
+                    "ts-jest",
+                    "rimraf",
+                    "inversify",
+                    "reflect-metadata"
+                ]
             }
         ],
         "sync-ts-paths"
