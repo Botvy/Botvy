@@ -32,6 +32,14 @@ export abstract class Plugin implements IPlugin {
     active: boolean = false;
 
     /**
+     * This is set to true when the plugin was already initialized
+     *
+     * @type {boolean}
+     * @memberof Plugin
+     */
+    isInitialized: boolean = false;
+
+    /**
      * Creates an instance of Plugin.
      * @param {string} id The id of the plugin
      * @param {string} name The name of the plugin
@@ -52,7 +60,7 @@ export abstract class Plugin implements IPlugin {
      *
      * @memberof Plugin
      */
-    public onLoad() {}
+    public async onLoad() {}
 
     /**
      * Plugin lifecycle hook
@@ -60,5 +68,5 @@ export abstract class Plugin implements IPlugin {
      *
      * @memberof Plugin
      */
-    public onUnload() {}
+    public async onUnload() {}
 }

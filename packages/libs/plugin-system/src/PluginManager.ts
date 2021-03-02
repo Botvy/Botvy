@@ -1,4 +1,5 @@
-import { injectable } from 'inversify';
+import { inject, injectable } from 'inversify';
+import { Logger } from 'tslog';
 
 import { Plugin } from './Plugin';
 import { PluginFilterType } from './PluginFilterType';
@@ -20,19 +21,23 @@ export class PluginManager {
      *
      * @memberof PluginManager
      */
-    constructor() {}
+    constructor(@inject(Logger) private logger: Logger) {}
 
     /**
      * Loads all plugins using pluging loaders
      *
-     * @return {Plugin[]} The loaded plugins
+     * @return {Promise<Plugin[]>} The loaded plugins
      * @memberof PluginManager
      */
-    public loadPlugins(): Plugin[] {
+    public async loadPlugins(): Promise<Plugin[]> {
         return this.plugins;
     }
 
-    public addPlugin(plugin: Plugin) {
+    public async addPlugin(plugin: Plugin) {
+        this.logger.debug(
+            `Checking if plugin is already registered: ${plugin.id}`,
+        );
+
         if (
             this.plugins.find(
                 (existingPlugin) => existingPlugin.id === plugin.id,
@@ -41,19 +46,36 @@ export class PluginManager {
             return;
         }
 
+        this.logger.debug(`Plugin is not registered: ${plugin.id}`);
+
+        if (plugin.isInitialized === false) {
+            await plugin.onLoad();
+            plugin.isInitialized = true;
+        }
+
         this.plugins.push(plugin);
     }
 
-    public removePlugin(pluginId: string) {
-        this.plugins = this.plugins.filter((plugin) => {
+    public async removePlugin(pluginId: string) {
+        this.logger.debug(`Removing plugin: ${pluginId}`);
+
+        const newPlugins: Plugin[] = [];
+
+        for (const plugin of this.plugins) {
             if (plugin.id !== pluginId) {
-                return true;
+                newPlugins.push(plugin);
+                continue;
             }
 
-            // TODO: Do lifecycle hooks for the plugin
+            this.logger.debug(`Unloading plugin: ${plugin.id}`);
 
-            return false;
-        });
+            // Call the plugin lifecycle method
+            await plugin.onUnload();
+
+            this.logger.debug(`Unloaded plugin: ${plugin.id}`);
+        }
+
+        this.plugins = newPlugins;
     }
 
     /**
