@@ -5,13 +5,7 @@
         "outDir": "./dist",
         "rootDir": "./src",
         "baseUrl": ".",
-        "paths": {
-            "@botvy/plugin-system/*": ["../../libs/plugin-system/*"]
-        }
+        "paths": {}
     },
-    "references": [
-        {
-            "path": "../../libs/plugin-system/tsconfig.json"
-        }
-    ]
+    "references": []
 }
