@@ -4,17 +4,17 @@
         "target": "es5",
         "module": "commonjs",
         "jsx": "react",
+        "types": ["jest", "ts-jest"],
         "declaration": true,
-        "declarationMap": true,
         "sourceMap": true,
         "composite": true,
         "downlevelIteration": true,
         "strict": true,
-        "typeRoots": ["./node_modules/@types/"],
-        "types": [],
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "references": [
         {
