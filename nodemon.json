@@ -1,0 +1,8 @@
+{
+    "verbose": true,
+    "watch": ["packages/**/src/", "packages/**/tsconfig.json"],
+    "ignore": ["node_modules/*", "dist/*"],
+    "events": {
+        "restart": "node -e 'console.clear()'"
+    }
+}
