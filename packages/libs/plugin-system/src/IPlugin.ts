@@ -38,14 +38,4 @@ export interface IPlugin {
      * @memberof IPlugin
      */
     author: string;
-
-    /**
-     *
-     * The file path to the class which implements the IPlugin
-     * and provides the basic functionality of the plugin class.
-     *
-     * @type {string}
-     * @memberof IPlugin
-     */
-    mainEntrypoint?: string;
 }
