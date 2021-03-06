@@ -23,6 +23,6 @@
         "@packagaya/cli": "^1.1.5",
         "@packagaya/ts-adapter": "^1.5.1",
         "nodemon": "^2.0.7",
-        "typescript": "^4.2.2"
+        "typescript": "^4.2.3"
     }
 }
