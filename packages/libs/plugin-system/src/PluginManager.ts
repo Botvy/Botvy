@@ -39,7 +39,7 @@ export class PluginManager {
             const loadedPlugins = await pluginLoader.loadPlugins();
 
             for (const loadedPlugin of loadedPlugins) {
-                this.addPlugin(loadedPlugin);
+                await this.addPlugin(loadedPlugin);
             }
         }
 
