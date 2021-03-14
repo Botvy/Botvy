@@ -1,6 +1,7 @@
-import { inject, injectable } from 'inversify';
+import { inject, injectable, multiInject } from 'inversify';
 import { Logger } from 'tslog';
 
+import { PluginLoader } from './loader/PluginLoader';
 import { Plugin } from './Plugin';
 import { PluginFilterType } from './PluginFilterType';
 
@@ -16,12 +17,16 @@ export class PluginManager {
 
     /**
      * Creates an instance of PluginManager.
-     *
-     * TODO: Implement Plugin Loaders
-     *
+     * @param {Logger} logger The logger which should be used to log messages
+     * @param {PluginLoader[]} pluginLoaders The plugin loaders which will be injected by the dependency injection container.
+     *                                       They will be used to load plugins from different sources.
      * @memberof PluginManager
      */
-    constructor(@inject(Logger) private logger: Logger) {}
+    constructor(
+        @inject(Logger.name) private logger: Logger,
+        @multiInject(PluginLoader.name)
+        private pluginLoaders: PluginLoader[],
+    ) {}
 
     /**
      * Loads all plugins using pluging loaders
@@ -30,19 +35,19 @@ export class PluginManager {
      * @memberof PluginManager
      */
     public async loadPlugins(): Promise<Plugin[]> {
+        for (const pluginLoader of this.pluginLoaders) {
+            const loadedPlugins = await pluginLoader.loadPlugins();
+
+            for (const loadedPlugin of loadedPlugins) {
+                this.addPlugin(loadedPlugin);
+            }
+        }
+
         return this.plugins;
     }
 
     public async addPlugin(plugin: Plugin) {
-        this.logger.debug(
-            `Checking if plugin is already registered: ${plugin.id}`,
-        );
-
-        if (
-            this.plugins.find(
-                (existingPlugin) => existingPlugin.id === plugin.id,
-            ) !== undefined
-        ) {
+        if (this.checkIfPluginIsRegistered(plugin.id)) {
             return;
         }
 
@@ -95,5 +100,19 @@ export class PluginManager {
             case PluginFilterType.INACTIVE:
                 return this.plugins.filter((plugin) => plugin.active === false);
         }
+    }
+
+    /**
+     * Checks if the given plugin id is already managed by the plugin manager
+     *
+     * @private
+     * @param {string} pluginId The id of the plugin which should be found
+     * @return {boolean} Returns true when the given plugin id was found in the managed plugins. Otherwise false will be returned.
+     * @memberof PluginManager
+     */
+    public checkIfPluginIsRegistered(pluginId: string): boolean {
+        this.logger.debug(`Checking if plugin is registered: ${pluginId}`);
+
+        return this.plugins.some((plugin) => pluginId === plugin.id);
     }
 }

@@ -1,9 +1,11 @@
 import { Container } from 'inversify';
 import { Logger } from 'tslog';
 
+import { PluginLoader } from '../loader/PluginLoader';
 import { PluginFilterType } from '../PluginFilterType';
 import { PluginManager } from '../PluginManager';
 import { ExamplePlugin } from './ExamplePlugin';
+import { ExamplePluginLoader } from './ExamplePluginLoader';
 
 describe('PluginManager', () => {
     let container: Container;
@@ -14,8 +16,9 @@ describe('PluginManager', () => {
         examplePlugin = new ExamplePlugin();
         container = new Container();
 
-        container.bind(PluginManager).toSelf();
-        container.bind(Logger).toConstantValue(
+        container.bind(PluginLoader.name).to(ExamplePluginLoader);
+        container.bind(PluginManager.name).to(PluginManager);
+        container.bind(Logger.name).toConstantValue(
             new Logger({
                 colorizePrettyLogs: true,
                 displayDateTime: true,
@@ -23,11 +26,10 @@ describe('PluginManager', () => {
             }),
         );
 
-        pluginManager = container.get(PluginManager);
+        pluginManager = container.get(PluginManager.name);
     });
 
     afterEach(() => {
-        pluginManager.removePlugin(examplePlugin.id);
         container.unbindAll();
     });
 
@@ -40,7 +42,7 @@ describe('PluginManager', () => {
         it('should load plugins', async () => {
             const plugins = await pluginManager.loadPlugins();
 
-            expect(plugins).toHaveLength(0);
+            expect(plugins).toHaveLength(1);
         });
 
         describe('Plugin Filter', () => {
@@ -133,6 +135,20 @@ describe('PluginManager', () => {
                 plugins = pluginManager.getPlugins(PluginFilterType.ALL);
 
                 expect(plugins).toHaveLength(0);
+            });
+
+            it('should check that a plugin is already registered when the plugin is managed', async () => {
+                await pluginManager.addPlugin(examplePlugin);
+
+                expect(
+                    pluginManager.checkIfPluginIsRegistered(examplePlugin.id),
+                ).toBe(true);
+            });
+
+            it('should check that a plugin is not registered when the plugin is not managed', () => {
+                expect(
+                    pluginManager.checkIfPluginIsRegistered(examplePlugin.id),
+                ).toBe(false);
             });
         });
     });
