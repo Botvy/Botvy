@@ -26,6 +26,4 @@ jobs:
               run: make ci
               shell: bash
             - name: Upload the code coverage results to codecov
-              uses: codecov/codecov-action@v1
-              with:
-                  directory: ./coverage/
+              run: bash <(curl -s https://codecov.io/bash)
