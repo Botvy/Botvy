@@ -16,7 +16,8 @@ clean:
 					"./packages/**/tsconfig.tsbuildinfo" \
 					"setup-jest.js" \
 					"setup-jest.js.map" \
-					"setup-jest.d.ts"
+					"setup-jest.d.ts" \
+					"coverage"
 
 clean-watch:
 	yarn run nodemon \
