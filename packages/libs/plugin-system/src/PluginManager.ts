@@ -46,6 +46,14 @@ export class PluginManager {
         return this.plugins;
     }
 
+    /**
+     * Adds the given plugin to the managed plugins
+     * It also checks if the plugin is already registered
+     * Also triggers the lifecycle hooks
+     *
+     * @param {Plugin} plugin The plugin which should be added
+     * @memberof PluginManager
+     */
     public async addPlugin(plugin: Plugin) {
         if (this.checkIfPluginIsRegistered(plugin.id)) {
             return;
@@ -53,14 +61,25 @@ export class PluginManager {
 
         this.logger.debug(`Plugin is not registered: ${plugin.id}`);
 
+        // Check if the plugin is not initialized
         if (plugin.isInitialized === false) {
+            // Trigger the lifecycle hook
             await plugin.onLoad();
+
+            // Set the isInitialized property to true
             plugin.isInitialized = true;
         }
 
         this.plugins.push(plugin);
     }
 
+    /**
+     * Removes the plugin by the given plugin id
+     * Also triggers the lifecycle hooks
+     *
+     * @param {string} pluginId The id of the plugin which should be removed
+     * @memberof PluginManager
+     */
     public async removePlugin(pluginId: string) {
         this.logger.debug(`Removing plugin: ${pluginId}`);
 
