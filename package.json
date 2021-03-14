@@ -1,7 +1,7 @@
 {
     "name": "@botvy/root",
     "version": "0.0.0",
-    "author": "Yannick Fricke <yannickfricke@googlemail.com>",
+    "author": "Yannick Fricke and the Botvy contributors",
     "license": "MIT",
     "private": true,
     "workspaces": [
