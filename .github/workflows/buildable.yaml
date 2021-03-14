@@ -1,0 +1,25 @@
+name: Checks if the repository is buildable
+
+on:
+    push:
+        branches-ignore:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the repository
+              uses: actions/checkout@v2
+            - name: Use Node.js 15.x
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 15.x
+            - name: Install yarn
+              run: npm i -g yarn
+            - name: Install the dependencies
+              run: yarn install
+              shell: bash
+            - name: Build the code
+              run: yarn run build
+              shell: bash
