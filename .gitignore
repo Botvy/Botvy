@@ -1,6 +1,7 @@
 node_modules
 dist
 tsconfig.tsbuildinfo
+tsconfig.base.tsbuildinfo
 yarn-error.log
 *.d.ts
 *.d.ts.map
