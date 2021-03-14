@@ -55,6 +55,7 @@ describe('PluginManager', () => {
                 plugins = pluginManager.getPlugins(undefined);
 
                 expect(plugins).toHaveLength(1);
+                expect(plugins).toEqual([examplePlugin]);
             });
 
             it('should return the current plugin array when the filter type is set to PluginFilterType.All ', () => {
