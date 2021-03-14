@@ -1,5 +1,11 @@
 .PHONY: clean clean-watch
 
+build: clean
+	yarn run build
+
+ci: build
+	yarn run test --collectCoverage
+
 clean:
 	yarn run rimraf "./packages/**/src/*.d.ts" \
 					"./packages/**/src/*.d.ts.map" \
