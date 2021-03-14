@@ -138,6 +138,30 @@ describe('PluginManager', () => {
                 expect(plugins).toHaveLength(0);
             });
 
+            it('should not remove plugins where the plugin id dont match', async () => {
+                const secondExamplePlugin = new ExamplePlugin();
+
+                // @ts-ignore
+                secondExamplePlugin.id = 'second-test-plugin';
+
+                await pluginManager.addPlugin(examplePlugin);
+                await pluginManager.addPlugin(secondExamplePlugin);
+
+                let plugins = pluginManager.getPlugins(PluginFilterType.ALL);
+
+                expect(plugins).toHaveLength(2);
+
+                examplePlugin.onUnload = jest.fn();
+
+                await pluginManager.removePlugin(examplePlugin.id);
+
+                expect(examplePlugin.onUnload).toBeCalled();
+
+                plugins = pluginManager.getPlugins(PluginFilterType.ALL);
+
+                expect(plugins).toHaveLength(1);
+            });
+
             it('should check that a plugin is already registered when the plugin is managed', async () => {
                 await pluginManager.addPlugin(examplePlugin);
 
