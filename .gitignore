@@ -6,3 +6,5 @@ yarn-error.log
 *.d.ts.map
 setup-jest.js
 setup-jest.js.map
+
+.idea/
