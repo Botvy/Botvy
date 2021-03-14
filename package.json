@@ -9,8 +9,8 @@
         "./packages/libs/*"
     ],
     "scripts": {
-        "build": "tsc --build",
-        "build:watch": "tsc --build -w",
+        "build": "tsc --build tsconfig.base.json",
+        "build:watch": "tsc --build -w tsconfig.base.json",
         "test": "jest",
         "test:watch": "jest --watch",
         "packagaya": "packagaya sync info",
