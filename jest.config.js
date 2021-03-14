@@ -4,6 +4,7 @@ module.exports = {
     roots: ['./packages/apps/ui/src/', './packages/libs/plugin-system/src/'],
     testRegex: '(/__tests__/.*).test.tsx?$',
     setupFiles: ['./setup-jest.ts'],
+    coverageReporters: ['html', 'lcov'],
     globals: {
         'ts-jest': {
             tsconfig: './tsconfig.base.json',
