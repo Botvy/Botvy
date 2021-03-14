@@ -28,4 +28,4 @@ jobs:
             - name: Upload the code coverage results to codecov
               uses: codecov/codecov-action@v1
               with:
-                  files: ./coverage/clover.xml
+                  directory: ./coverage/
