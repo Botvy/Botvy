@@ -27,3 +27,7 @@ jobs:
               shell: bash
             - name: Upload the code coverage results to codecov
               run: bash <(curl -s https://codecov.io/bash) -f ./coverage/lcov.info -t ${{ secrets.CODECOV_TOKEN }}
+            - uses: actions/upload-artifact@v2
+              with:
+                  name: lcov-report
+                  path: ./coverage/
