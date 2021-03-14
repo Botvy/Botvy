@@ -106,6 +106,14 @@ describe('PluginManager', () => {
                     expect(examplePlugin.onLoad).toHaveBeenCalled();
                 });
 
+                it('should not call the lifecycle method when the plugin is already initialized', async () => {
+                    examplePlugin.onLoad = jest.fn();
+                    examplePlugin.isInitialized = true;
+                    await pluginManager.addPlugin(examplePlugin);
+
+                    expect(examplePlugin.onLoad).not.toHaveBeenCalled();
+                });
+
                 it('should load the additional container modules', () => {});
 
                 it('should not be able to add plugins twice', async () => {
