@@ -7,7 +7,7 @@ module.exports = {
     coverageReporters: ['html', 'lcov'],
     collectCoverageFrom: [
         './packages/**/src/**/*.{ts,tsx}',
-        '!./packages/**/src/**/__tests__/**/*.{ts,tsx}',
+        './packages/**/src/**/*.test.{ts,tsx}',
     ],
     globals: {
         'ts-jest': {
