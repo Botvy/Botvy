@@ -1,4 +1,4 @@
-.PHONY: clean clean-watch
+.PHONY: build ci clean clean-watch
 
 build: clean
 	yarn run build
