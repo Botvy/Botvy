@@ -13,4 +13,7 @@ clean:
 					"setup-jest.d.ts"
 
 clean-watch:
-	yarn run nodemon -w "./packages/**/src/" -w "./packages/**/yarn.lock" -w "./packages/**/tsconfig.tsbuildinfo" -x "clear && make clean"
+	yarn run nodemon -x "clear && make clean" \
+					 -w "./packages/**/src/" \
+					 -w "./packages/**/yarn.lock" \
+					 -w "./packages/**/tsconfig.tsbuildinfo"
