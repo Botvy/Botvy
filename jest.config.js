@@ -3,7 +3,6 @@ module.exports = {
     testEnvironment: 'node',
     testRegex: '(/__tests__/.*).test.tsx?$',
     setupFiles: ['./setup-jest.ts'],
-    // collectCoverage: true,
     coverageReporters: ['html', 'lcov'],
     collectCoverageFrom: [
         './packages/**/src/*.{ts,tsx}',
