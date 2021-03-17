@@ -9,6 +9,7 @@ module.exports = {
         './packages/**/src/*.{ts,tsx}',
         './packages/**/src/**/*.{ts,tsx}',
         '!**/node_modules/**',
+        '!**/__tests__/**',
         '!**/index.ts',
         '!**/main.tsx',
     ],
