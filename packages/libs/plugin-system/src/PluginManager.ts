@@ -93,8 +93,10 @@ export class PluginManager {
 
             this.logger.debug(`Unloading plugin: ${plugin.id}`);
 
-            // Call the plugin lifecycle method
-            await plugin.onUnload();
+            if (plugin.isInitialized) {
+                // Call the plugin lifecycle method
+                await plugin.onUnload();
+            }
 
             this.logger.debug(`Unloaded plugin: ${plugin.id}`);
         }

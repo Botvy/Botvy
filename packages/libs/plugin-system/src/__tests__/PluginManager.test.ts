@@ -128,7 +128,7 @@ describe('PluginManager', () => {
                 });
             });
 
-            it('should be able to remove plugins', async () => {
+            it('should be able to remove plugins with dispatching the lifecycle hooks', async () => {
                 await pluginManager.addPlugin(examplePlugin);
 
                 let plugins = pluginManager.getPlugins(PluginFilterType.ALL);
@@ -140,6 +140,25 @@ describe('PluginManager', () => {
                 await pluginManager.removePlugin(examplePlugin.id);
 
                 expect(examplePlugin.onUnload).toBeCalled();
+
+                plugins = pluginManager.getPlugins(PluginFilterType.ALL);
+
+                expect(plugins).toHaveLength(0);
+            });
+
+            it('should be able to remove plugins without dispatching the lifecycle hooks', async () => {
+                await pluginManager.addPlugin(examplePlugin);
+
+                let plugins = pluginManager.getPlugins(PluginFilterType.ALL);
+
+                expect(plugins).toHaveLength(1);
+
+                examplePlugin.onUnload = jest.fn();
+                examplePlugin.isInitialized = false;
+
+                await pluginManager.removePlugin(examplePlugin.id);
+
+                expect(examplePlugin.onUnload).not.toBeCalled();
 
                 plugins = pluginManager.getPlugins(PluginFilterType.ALL);
 
