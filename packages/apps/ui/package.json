@@ -3,8 +3,8 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "build": "tsc",
-        "build:watch": "tsc --watch"
+        "build": "tsc --build",
+        "build:watch": "tsc --build --watch"
     },
     "dependencies": {
         "@botvy/plugin-system": "*",
