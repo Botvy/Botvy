@@ -1,4 +1,4 @@
-name: Checks if the repository is buildable
+name: Building the project
 
 on:
     push:
@@ -9,6 +9,8 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+            - name: Install make
+              run: sudo apt-get update && sudo apt-get install -y make
             - name: Checkout the repository
               uses: actions/checkout@v2
             - name: Use Node.js 15.x
@@ -21,5 +23,5 @@ jobs:
               run: yarn install
               shell: bash
             - name: Build the code
-              run: yarn run build
+              run: make build
               shell: bash

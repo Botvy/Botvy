@@ -1,4 +1,4 @@
-name: Checks if the repository is compliant to the defined standards
+name: Code standards
 
 on:
     push:
