@@ -1,10 +1,10 @@
 import { Container } from 'inversify';
 import { Logger } from 'tslog';
 
-import { PluginLoader } from '../loader/PluginLoader';
 import { PluginFilterType } from '../PluginFilterType';
 import { PluginManager } from '../PluginManager';
 import { ExamplePlugin } from './ExamplePlugin';
+import { PluginLoader } from '../loader/PluginLoader';
 import { ExamplePluginLoader } from './ExamplePluginLoader';
 
 describe('PluginManager', () => {
@@ -12,12 +12,12 @@ describe('PluginManager', () => {
     let pluginManager: PluginManager;
     let examplePlugin: ExamplePlugin;
 
-    beforeEach(() => {
+    beforeEach(async () => {
         examplePlugin = new ExamplePlugin();
         container = new Container();
-
+        container.bind(PluginManager.name).to(PluginManager).inSingletonScope();
         container.bind(PluginLoader.name).to(ExamplePluginLoader);
-        container.bind(PluginManager.name).to(PluginManager);
+
         container.bind(Logger.name).toConstantValue(
             new Logger({
                 colorizePrettyLogs: true,
@@ -113,8 +113,6 @@ describe('PluginManager', () => {
 
                     expect(examplePlugin.onLoad).not.toHaveBeenCalled();
                 });
-
-                it('should load the additional container modules', () => {});
 
                 it('should not be able to add plugins twice', async () => {
                     await pluginManager.addPlugin(examplePlugin);
