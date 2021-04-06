@@ -4,12 +4,13 @@
     "license": "MIT",
     "main": "./dist/index.js",
     "scripts": {
-        "build": "tsc",
-        "build:watch": "tsc --watch",
+        "build": "tsc --build",
+        "build:watch": "tsc --build --watch",
         "test": "jest",
         "test:watch": "jest --watch"
     },
     "dependencies": {
+        "@botvy/ioc": "*",
         "inversify": "^5.0.5",
         "react": "^17.0.2",
         "tslog": "^3.1.1"
