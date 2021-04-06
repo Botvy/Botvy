@@ -26,7 +26,6 @@ jobs:
               run: make build
               shell: bash
             - name: Run the tests
-            - name: Run the tests
               run: make ci
               shell: bash
             - name: Upload the code coverage results to codecov
