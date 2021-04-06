@@ -2,8 +2,8 @@
 
 build: clean
 	yarn workspace @botvy/ui run build
-	yarn workspace @botvy/plugin-system run build
 	yarn workspace @botvy/ioc run build
+	yarn workspace @botvy/plugin-system run build
 
 ci: build
 	yarn run test --collectCoverage
