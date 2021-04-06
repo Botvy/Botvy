@@ -32,7 +32,7 @@ export abstract class Plugin implements IPlugin {
     active: boolean = false;
 
     /**
-     * This is set to true when the plugin was already initialized
+     * This is set to true when the plugin is initialized
      *
      * @type {boolean}
      * @memberof Plugin
