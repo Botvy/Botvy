@@ -1,0 +1,20 @@
+{
+    "extends": "../../../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "rootDir": "./src/",
+        "composite": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "paths": {
+            "@botvy/plugin-system/*": [
+                "../plugin-system/*"
+            ]
+        }
+    },
+    "references": [
+        {
+            "path": "../plugin-system/tsconfig.json"
+        }
+    ]
+}

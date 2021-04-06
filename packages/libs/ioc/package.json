@@ -1,0 +1,16 @@
+{
+    "name": "@botvy/ioc",
+    "version": "0.0.0",
+    "license": "MIT",
+    "main": "./dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "build:watch": "tsc --watch"
+    },
+    "dependencies": {
+        "@botvy/plugin-system": "*"
+    },
+    "devDependencies": {
+        "typescript": "^4.2.3"
+    }
+}
