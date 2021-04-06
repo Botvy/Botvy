@@ -12,6 +12,7 @@ module.exports = {
         '!**/index.ts',
         '!**/main.tsx',
     ],
+    coveragePathIgnorePatterns: ['/__tests__/', '/node_modules/'],
     globals: {
         'ts-jest': {
             tsconfig: './tsconfig.base.json',
