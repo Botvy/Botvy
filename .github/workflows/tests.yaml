@@ -1,4 +1,4 @@
-name: Checks if the tests are passing
+name: Tests + Code coverage
 
 on:
     push:

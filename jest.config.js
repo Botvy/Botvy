@@ -3,15 +3,16 @@ module.exports = {
     testEnvironment: 'node',
     testRegex: '(/__tests__/.*).test.tsx?$',
     setupFiles: ['./setup-jest.ts'],
-    // collectCoverage: true,
     coverageReporters: ['html', 'lcov'],
     collectCoverageFrom: [
         './packages/**/src/*.{ts,tsx}',
         './packages/**/src/**/*.{ts,tsx}',
         '!**/node_modules/**',
+        '!**/__tests__/**',
         '!**/index.ts',
         '!**/main.tsx',
     ],
+    coveragePathIgnorePatterns: ['/__tests__/', '/node_modules/'],
     globals: {
         'ts-jest': {
             tsconfig: './tsconfig.base.json',
