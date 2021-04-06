@@ -22,10 +22,7 @@ jobs:
             - name: Install the dependencies
               run: yarn install
               shell: bash
-            - name: Build the project
-              run: make build
-              shell: bash
-            - name: Run the tests
+            - name: Run the CI script
               run: make ci
               shell: bash
             - name: Upload the code coverage results to codecov
