@@ -1,27 +1,49 @@
-import { Container, AsyncContainerModule } from 'inversify';
+import { Container, AsyncContainerModule, ContainerModule } from 'inversify';
 import { PluginModule } from './modules/PluginModule';
 
-const coreModules = {
-    sync: [new PluginModule()],
-    async: [],
+interface ICoreModules {
+    syncModules: ContainerModule[];
+    asyncModules: AsyncContainerModule[];
+}
+
+const coreModules: ICoreModules = {
+    syncModules: [new PluginModule()],
+    asyncModules: [],
 };
 
-export async function getContainer(): Promise<Container> {
+export async function getContainer(
+    otherModules?: ICoreModules,
+): Promise<Container> {
     let container = new Container();
 
-    container = await loadContainerModules(container);
+    otherModules = otherModules ?? {
+        syncModules: [],
+        asyncModules: [],
+    };
+
+    container = await loadContainerModules(container, otherModules);
 
     return container;
 }
 
-async function loadContainerModules(container: Container): Promise<Container> {
+async function loadContainerModules(
+    container: Container,
+    otherModules: ICoreModules,
+): Promise<Container> {
+    const modulesToLoad: ICoreModules = {
+        syncModules: coreModules.syncModules.concat(otherModules.syncModules),
+        asyncModules: coreModules.asyncModules.concat(
+            otherModules.asyncModules,
+        ),
+    };
+
     // Bind the ContainerModules to the container
-    coreModules.sync.forEach((containerModule) =>
+    modulesToLoad.syncModules.forEach((containerModule) =>
         container.load(containerModule),
     );
 
     // Bind the AsyncContainerModules to the container
-    for (const containerModule of coreModules.async) {
+    for (const containerModule of modulesToLoad.asyncModules) {
         await container.loadAsync(containerModule);
     }
 
