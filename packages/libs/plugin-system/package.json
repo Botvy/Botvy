@@ -10,7 +10,7 @@
         "test:watch": "jest --watch"
     },
     "dependencies": {
-        "inversify": "^5.1.1",
+        "inversify": "^6.0.1",
         "react": "^17.0.2",
         "tslog": "^3.2.2"
     },
