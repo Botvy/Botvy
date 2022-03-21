@@ -12,7 +12,7 @@
     "dependencies": {
         "inversify": "^5.1.1",
         "react": "^17.0.2",
-        "tslog": "^3.2.2"
+        "tslog": "^3.3.3"
     },
     "devDependencies": {
         "@types/jest": "^27.0.1",
