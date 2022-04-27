@@ -11,7 +11,7 @@
     },
     "dependencies": {
         "inversify": "^5.1.1",
-        "react": "^17.0.2",
+        "react": "^18.1.0",
         "tslog": "^3.2.2"
     },
     "devDependencies": {
